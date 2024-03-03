@@ -24,11 +24,11 @@ const props = defineProps({
 @import "../assets/styles/main"
 .root
     // width: calc( (100% - 76px) / 3 )
-    padding-right: 38px
+    margin-right: 38px
     padding-bottom: 20px
 
     &:nth-child(3n + 3)
-        padding-right: 0
+        margin-right: 0
 
 .pic
     width: 120px
