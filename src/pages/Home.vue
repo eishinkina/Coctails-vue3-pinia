@@ -1,7 +1,6 @@
 <script setup>
 import AppLayout from "@/components/AppLayout.vue";
 import CocktailsTrumbs from "@/components/CocktailsTrumbs.vue";
-import { ref } from "vue";
 import { useRootStore } from "@/stores/root";
 import { storeToRefs } from "pinia";
 const rootStore = useRootStore();
