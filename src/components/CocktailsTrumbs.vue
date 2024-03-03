@@ -23,7 +23,7 @@ const props = defineProps({
 <style lang="sass" scoped>
 @import "../assets/styles/main"
 .root
-    width: calc( (100% - 76px) / 3 )
+    // width: calc( (100% - 76px) / 3 )
     padding-right: 38px
     padding-bottom: 20px
 
@@ -41,4 +41,5 @@ const props = defineProps({
 .name
     padding-top: 15px
     letter-spacing: 0.1em
+    max-width: 150px
 </style>

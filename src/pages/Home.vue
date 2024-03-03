@@ -6,12 +6,10 @@ import { useRootStore } from "@/stores/root";
 import { storeToRefs } from "pinia";
 const rootStore = useRootStore();
 rootStore.getIngredients();
-const { ingredients, cocktails } = storeToRefs(rootStore);
-
-const ingredient = ref(null);
+const { ingredients, cocktails, ingredient } = storeToRefs(rootStore);
 
 function getCocktails() {
-  rootStore.getCocktails(ingredient.value);
+  rootStore.getCocktails(rootStore.ingredient);
 }
 </script>
 
@@ -24,11 +22,13 @@ function getCocktails() {
           <div class="line"></div>
           <div class="select-wrapper">
             <el-select
-              v-model="ingredient"
+              v-model="rootStore.ingredient"
               placeholder="Выберите ингредиент"
               size="large"
               class="select"
               @change="getCocktails"
+              filterable
+              allow-create
             >
               <el-option
                 v-for="item in ingredients"
@@ -91,7 +91,6 @@ function getCocktails() {
 
 .cocktails
   display: flex
-  justify-content: space-between
   flex-wrap: wrap
   align-items: center
   margin-top: 60px
