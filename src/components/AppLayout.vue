@@ -4,8 +4,15 @@
       <div :style="`background-image: url(${imgUrl})`" class="img"></div>
       <div class="main">
         <div class="btns">
-          <el-button  type="primary" :icon="Back" circle class="back" @click="backFunc" v-if="isBackButtonVisible"/>
-          <el-button class="btn">Получить случайный коктейль</el-button>
+          <el-button
+            type="primary"
+            :icon="Back"
+            circle
+            class="back"
+            @click="backFunc"
+            v-if="isBackButtonVisible"
+          />
+          <el-button class="btn" @click="goForCoctailRandom">Получить случайный коктейль</el-button>
         </div>
         <slot></slot>
       </div>
@@ -15,6 +22,9 @@
 
 <script setup>
 import { Back } from "@element-plus/icons-vue";
+import {useRoute, useRouter} from "vue-router"
+import { computed } from "vue";
+import { ROUTES_PATHS } from "@/constants/router";
 const props = defineProps({
   imgUrl: {
     type: String,
@@ -27,9 +37,22 @@ const props = defineProps({
   isBackButtonVisible: {
     type: Boolean,
     required: false,
-    default: true, // По умолчанию кнопка видна
+    default: true,
   },
 });
+
+const route = useRoute();
+const router = useRouter();
+
+const routeName = computed(() => route.name);
+
+function goForCoctailRandom() {
+  router.push(ROUTES_PATHS.COCKTAIL_RANDOM)
+  if(routeName.value === ROUTES_PATHS.COCKTAIL_RANDOM) {
+    router.go()
+  }
+}
+
 </script>
 
 <style lang="sass" scoped>
@@ -75,3 +98,4 @@ const props = defineProps({
   &:hover
    border-color:$accent
 </style>
+
